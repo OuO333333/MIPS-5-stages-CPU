@@ -9,27 +9,27 @@ module INSTRUCTION_FETCH(
 );
 
 input clk, rst;
-output reg 	[31:0] PC, IR;
+output reg [31:0] PC, IR;
 
-//instruction memory
+// Instruction memory
 reg [31:0] instruction [127:0];
 
-//output instruction
+// Output instruction
 always @(posedge clk or posedge rst)
 begin
-	if(rst)
-		IR <= 32'd0;
-	else
-		IR <= instruction[PC[10:2]];
+    if(rst)
+        IR <= 32'd0;
+    else
+        IR <= instruction[PC[10:2]];
 end
 
-// output program counter
+// Output program counter
 always @(posedge clk or posedge rst)
 begin
-	if(rst)
-		PC <= 32'd0;
-	else//add new PC address here, ex: branch, jump...
-		PC <= PC+4;
+    if(rst)
+        PC <= 32'd0;
+    else//add new PC address here, ex: branch, jump...
+        PC <= PC+4;
 end
 
 endmodule
