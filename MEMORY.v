@@ -29,8 +29,8 @@ reg [31:0] DM [0:127];
 always @(posedge clk)
 begin
     if(rst)begin
-            MW_ALUout <= 32'b0;
-            MW_RD <= 5'b0;
+        MW_ALUout <= 32'b0;
+        MW_RD <= 5'b0;
     end else begin
         MW_ALUout <= ALUout;
         MW_RD <= XM_RD;
