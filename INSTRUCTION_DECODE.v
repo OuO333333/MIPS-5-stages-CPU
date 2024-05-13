@@ -26,13 +26,16 @@ output reg [2:0] ALUctr;
 reg [31:0] REG [0:31];
 
 // Write back
-always @(posedge clk)//add new Dst REG source here
-	if(MW_RD)
-	  REG[MW_RD] <= MW_ALUout;
-	else
-	  REG[MW_RD] <= REG[MW_RD];//keep REG[0] always equal zero
-
-// set A, and other register content(j/beq flag and address)	
+// Add new Dst REG source here
+always @(posedge clk)
+begin
+    if(MW_RD)
+        REG[MW_RD] <= MW_ALUout;
+    else
+        REG[MW_RD] <= REG[MW_RD];//keep REG[0] always equal zero
+end
+	
+// Set A, and other register content(j/beq flag and address)	
 always @(posedge clk or posedge rst)
 begin
     if(rst)begin
@@ -42,7 +45,7 @@ begin
     end
 end
 
-// set control signal, choose Dst REG, and set B	
+// Set control signal, choose Dst REG, and set B	
 always @(posedge clk or posedge rst)
 begin
     if(rst)begin
@@ -51,32 +54,32 @@ begin
         ALUctr <=3'b0;
     end else begin
         case(IR[31:26])
-            6'd0: begin
-                case(IR[5:0])//funct & setting ALUctr
-                    6'd32: begin
+            6'd0: begin// R type
+                case(IR[5:0])// funct & setting ALUctr
+                    6'd32: begin// add
                         B <= REG[IR[20:16]];
                         RD <= IR[15:11];
                         ALUctr <= 3'd0;//self define ALUctr value
                     end
-                    6'd34: begin
+                    6'd34: begin// sub
                         //define sub behavior here
                         ALUctr <=3'd1;//self define ALUctr value
                     end
-                    6'd42: begin
+                    6'd42: begin// slt
                         //define slt behavior here
                     end
                 endcase
             end
-            6'd35: begin
+            6'd35: begin// lw
                 //define lw behavior here
             end
-            6'd43: begin
+            6'd43: begin// sw
                 //define sw behavior here
             end
-            6'd4: begin
+            6'd4: begin// beq
                 //define beq behavior here
             end
-            6'd2: begin
+            6'd2: begin// j
                 //define j behavior here
             end
         endcase
