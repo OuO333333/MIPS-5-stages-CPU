@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# But not these files...
+!testbench.v
+!CPU.v
+!INSTRUCTION_FETCH.v
+!INSTRUCTION_DECODE.v
+!EXECUTION.v
+!MEMORY.v
