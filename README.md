@@ -1,4 +1,6 @@
 # MIPS-5-stages-CPU
+This is a simulation of MIPS 5-stages CPU using Verilog.
+
 How to run:
 1. sudo apt install iverilog
 2. sudo apt install gtkwave
