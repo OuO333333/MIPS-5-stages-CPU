@@ -22,7 +22,7 @@ wire [31:0] XM_ALUout;
 wire [4:0] XM_RD;
 // DATA_MEMORY wires
 wire [31:0] MW_ALUout;
-wire [4:0]	MW_RD;
+wire [4:0] MW_RD;
 
 /*============================== INSTRUCTION_FETCH  ==============================*/
 
